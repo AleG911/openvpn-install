@@ -2,7 +2,7 @@
 #
 # https://github.com/Nyr/openvpn-install
 #
-# Copyright (c) 2013 Nyr. Released under the MIT License.
+# Copyright (c) 2020 AleG911. Released under the MIT License.
 
 
 # Detect Debian users running the script with "sh" instead of bash
@@ -216,13 +216,13 @@ LimitNPROC=infinity" > /etc/systemd/system/openvpn-server@server.service.d/disab
 	fi
 	if [[ "$os" = "debian" || "$os" = "ubuntu" ]]; then
 		apt-get update
-		apt-get install -y openvpn openssl ca-certificates $firewall
+		apt-get install -y openvpn openssl ca-certificates bridge-utils $firewall
 	elif [[ "$os" = "centos" ]]; then
 		yum install -y epel-release
-		yum install -y openvpn openssl ca-certificates tar $firewall
+		yum install -y openvpn openssl ca-certificates bridge-utils tar $firewall
 	else
 		# Else, OS must be Fedora
-		dnf install -y openvpn openssl ca-certificates tar $firewall
+		dnf install -y openvpn openssl ca-certificates bridge-utils tar $firewall
 	fi
 	# If firewalld was just installed, enable it
 	if [[ "$firewall" == "firewalld" ]]; then
